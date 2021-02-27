@@ -83,15 +83,22 @@
 	</header>
 
 	<section class="row align-items-center">
-		<div class="col-md-12 col-lg-6 bg-primary d-flex justify-content-center p-4">
+		<div class="col-md-12 col-lg-4 bg-primary d-flex justify-content-center p-4">
 			<div id="MoonExample1"></div>
 		</div>
 
-		<div class="col-md-12 col-lg-6 bg-warning d-flex justify-content-center p-4">
+		<div class="col-md-12 col-lg-4 bg-warning d-flex justify-content-center p-4">
 			<div id="MoonExample2"></div>
 		</div>
 
-		<div class="col-md-12 col-lg-6 bg-primary p-4">
+		<div class="col-md-12 col-lg-4 bg-dark d-flex justify-content-around p-4">
+			<div id="MoonExample3"></div>
+			<img id="img1" src="" class="img-fluid" alt="" />
+			<img id="img2" src="" class="img-fluid" alt="" />
+			<img id="img3" src="" class="img-fluid" alt="" />
+		</div>
+
+		<div class="col-md-12 col-lg-4 bg-primary p-4">
 			<div class="input-group mb-2">
 				<label class="input-group-text bg-primary text-white" for="dat1">Date:</label>
 				<input id="dat1" type="text" class="form-control col-6" placeholder="00:00:00 00/00/0000" readonly="readonly" />
@@ -164,7 +171,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-12 col-lg-6 bg-warning p-4">
+		<div class="col-md-12 col-lg-4 bg-warning p-4">
 			<div class="input-group mb-2">
 				<label class="input-group-text bg-warning text-white" for="dat2">Date:</label>
 				<input id="dat2" type="text" class="form-control col-6" placeholder="00:00:00 00/00/0000" readonly="readonly" />
@@ -236,15 +243,78 @@
 				<input id="moonSd2" type="text" class="form-control" placeholder="0" readonly="readonly" />
 			</div>
 		</div>
-	</section>
 
-	<section class="row align-items-center mt-3">
-		<div class="col-md-12 col-lg-6 bg-dark d-flex justify-content-center p-4">
-			<div id="MoonExample3"></div>
-		</div>
+		<div class="col-md-12 col-lg-4 bg-dark p-4">
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="dat3">Date:</label>
+				<input id="dat3" type="text" class="form-control col-6" placeholder="00:00:00 00/00/0000" readonly="readonly" />
 
-		<div class="col-md-12 col-lg-6 bg-danger d-flex justify-content-center p-4">
-			<div id="MoonExample4"></div>
+				<label class="input-group-text bg-dark text-white" for="datUtc3">UTC Date:</label>
+				<input id="datUtc3" type="text" class="form-control" placeholder="00:00:00 00/00/0000 GMT" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="sunR3">Sunrise:</label>
+				<input id="sunR3" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="sunS3">Sunset:</label>
+				<input id="sunS3" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="sunAz3">Sun Azimuth:</label>
+				<input id="sunAz3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="sunAl3">Sun Altitude:</label>
+				<input id="sunAl3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonR3">Moonrise:</label>
+				<input id="moonR3" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonS3">Moonset:</label>
+				<input id="moonS3" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonAz3">Moon Azimuth:</label>
+				<input id="moonAz3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonAl3">Moon Altitude:</label>
+				<input id="moonAl3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonD3">Moon Distance:</label>
+				<input id="moonD3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonP3">Moon Parallax:</label>
+				<input id="moonP3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonF3">Moon Fraction:</label>
+				<input id="moonF3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonI3">Moon Illumination:</label>
+				<input id="moonI3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonPh3">Moon Phase:</label>
+				<input id="moonPh3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonPn3">Moon Phase Name:</label>
+				<input id="moonPn3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonAn3">Moon Angle:</label>
+				<input id="moonAn3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonZd3">Zodiac Sign:</label>
+				<input id="moonZd3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="moonSn3">Season Name:</label>
+				<input id="moonSn3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-dark text-white" for="moonSd3">Season Description:</label>
+				<input id="moonSd3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 		</div>
 	</section>
 
@@ -287,15 +357,12 @@
 				$("#moonZd1").val(astroData.zodiacSign);
 				$("#moonSn1").val(astroData.seasonName);
 				$("#moonSd1").val(astroData.seasonDesc);
-			},
+			}
 		});
 		// $('#MoonExample1').data('plugin_dinoMoon').destroy();
 
 		$('#MoonExample2').dinoMoon({
-			// Show or hide moon widget
-			showWidget: false,
-			// Plugin language automatic
-			// detection at runtime from browser
+			// Plugin language
 			language: 'en',
 			// Data recalculate every 1 second default 1 hour
 			updatePeriod: 1000,
@@ -324,22 +391,45 @@
 				$("#moonZd2").val(astroData.zodiacSign);
 				$("#moonSn2").val(astroData.seasonName);
 				$("#moonSd2").val(astroData.seasonDesc);
-			},
+			}
 		});
 		// $('#MoonExample2').data('plugin_dinoMoon').destroy();
 
 		$('#MoonExample3').dinoMoon({
-			// Plugin language automatic
-			// detection at runtime from browser
-			language: 'de'
+			// Show or hide moon widget
+			showWidget: false,
+			// Plugin language
+			language: 'de',
+			// Returns a array of astro data
+			onData: function(astroData)
+			{
+				$("#dat3").val(astroData.date);
+				$("#datUtc3").val(astroData.dateUTC);
+				$("#sunR3").val(astroData.sunRise);
+				$("#sunS3").val(astroData.sunSet);
+				$("#sunAz3").val(astroData.sunAzimuth);
+				$("#sunAl3").val(astroData.sunAltitude);
+				$("#moonR3").val(astroData.moonRise);
+				$("#moonS3").val(astroData.moonSet);
+				$("#moonAz3").val(astroData.moonAzimuth);
+				$("#moonAl3").val(astroData.moonAltitude);
+				$("#moonD3").val(astroData.moonDistance);
+				$("#moonP3").val(astroData.moonParallax);
+				$("#moonF3").val(astroData.moonFraction);
+				$("#moonI3").val(astroData.moonIllumination);
+				$("#moonPh3").val(astroData.moonPhase);
+				$("#moonPn3").val(astroData.moonPhaseName);
+				$("#moonAn3").val(astroData.moonAngle);
+				$("#moonZd3").val(astroData.zodiacSign);
+				$("#moonSn3").val(astroData.seasonName);
+				$("#moonSd3").val(astroData.seasonDesc);
+
+				$("#img1").attr('src', 'data:image/png;base64,' + astroData.moonPhaseImage).attr('alt', astroData.moonPhaseName);
+				$("#img2").attr('src', 'data:image/png;base64,' + astroData.zodiacImage).attr('alt', astroData.zodiacSign);
+				$("#img3").attr('src', 'data:image/png;base64,' + astroData.seasonImage).attr('alt', astroData.seasonName);
+			}
 		});
 		// $('#MoonExample3').data('plugin_dinoMoon').destroy();
-
-		$('#MoonExample4').dinoMoon({
-			// Enable plugin debug
-			debug: true
-		});
-		// $('#MoonExample4').data('plugin_dinoMoon').destroy();
 	});
 </script>
 </body>
