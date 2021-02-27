@@ -19,7 +19,8 @@
  *
  * Created by 2007 - 2021 MCX-Systems
  */
-;(function ($, window, document, undefined)
+;
+(function($, window, document, undefined)
 {
 	'use strict';
 
@@ -138,7 +139,7 @@
 		{
 			if (window.navigator.geolocation)
 			{
-				let id = window.navigator.geolocation.watchPosition(function (position)
+				let id = window.navigator.geolocation.watchPosition(function(position)
 					{
 						if (widget.options.latitude !== position.coords.latitude.toFixed(3) ||
 							widget.options.longitude !== position.coords.longitude.toFixed(3))
@@ -165,7 +166,7 @@
 							window.navigator.geolocation.clearWatch(id);
 						}
 					},
-					function (error)
+					function(error)
 					{
 						widget.options.latitude = 46.6623;
 						widget.options.longitude = 16.1711;
@@ -225,7 +226,7 @@
 	$.extend(Plugin.prototype,
 		{
 			// Initialization logic
-			init: function ()
+			init: function()
 			{
 				const widget = this;
 				/*
@@ -266,7 +267,7 @@
 				widget.initMoon();
 			},
 
-			initMoon: function ()
+			initMoon: function()
 			{
 				const widget = this;
 
@@ -285,12 +286,12 @@
 							'-webkit-filter':
 								`url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='dinoBlurFilter-${
 									widget._uId
-								}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
+									}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
 									widget._uId}")`,
 							'filter':
 								`url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='dinoBlurFilter-${
 									widget._uId
-								}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
+									}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
 									widget._uId}")`
 						});
 					}
@@ -355,7 +356,7 @@
 
 					/*--------------------------------------------------------------------*/
 
-					window.setTimeout(function ()
+					window.setTimeout(function()
 						{
 							// Hide Loader
 							widget.hideLoader();
@@ -380,7 +381,7 @@
 
 				widget.calculateAstroData();
 
-				window.setInterval(function ()
+				window.setInterval(function()
 					{
 						widget.calculateAstroData();
 					},
@@ -389,27 +390,27 @@
 
 			/***************************************************************************/
 
-			createMoonWidget: function ()
+			createMoonWidget: function()
 			{
 				return `<article id="dinoMoon-${this._uId}" class="dinoMoon"><div id="dinoMoonHolder-${this._uId
-				}" class="dinoMoonHolder"><section id="dinoMoonLoader-${this._uId
-				}" class="dinoLoaderOverlay"><div class="dinoCubeGrid"><div class="dinoCube dinoCube1"></div><div class="dinoCube dinoCube2"></div><div class="dinoCube dinoCube3"></div><div class="dinoCube dinoCube4"></div><div class="dinoCube dinoCube5"></div><div class="dinoCube dinoCube6"></div><div class="dinoCube dinoCube7"></div><div class="dinoCube dinoCube8"></div><div class="dinoCube dinoCube9"></div></div></section><img id="dinoEarthImage-${
+					}" class="dinoMoonHolder"><section id="dinoMoonLoader-${this._uId
+					}" class="dinoLoaderOverlay"><div class="dinoCubeGrid"><div class="dinoCube dinoCube1"></div><div class="dinoCube dinoCube2"></div><div class="dinoCube dinoCube3"></div><div class="dinoCube dinoCube4"></div><div class="dinoCube dinoCube5"></div><div class="dinoCube dinoCube6"></div><div class="dinoCube dinoCube7"></div><div class="dinoCube dinoCube8"></div><div class="dinoCube dinoCube9"></div></div></section><img id="dinoEarthImage-${
 					this._uId}" src="" class="dinoEarthImage" alt="Earth" /><img id="dinoSunImage-${this._uId
-				}" src="" class="dinoSunImage" alt="Sun" /><img id="dinoMoonImage-${this._uId
-				}" src="" class="dinoMoonImage" alt="Moon" /><img id="dinoZodiacImage-${this._uId
-				}" src="" class="dinoZodiacImage" alt="Zodiac" /><canvas id="dinoSolar-${this._uId
-				}" class="dinoSolar" height="300" width="300"></canvas><section id="dinoAstroInfo-${this._uId
-				}" class="dinoAstroInfo"></section><section id="dinoMoonInfo-${this._uId
-				}" class="dinoMoonInfo"></section></div><svg id="dinoBlurFilterSvg-${this._uId
-				}" xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><filter id="dinoBlurFilter-${
+					}" src="" class="dinoSunImage" alt="Sun" /><img id="dinoMoonImage-${this._uId
+					}" src="" class="dinoMoonImage" alt="Moon" /><img id="dinoZodiacImage-${this._uId
+					}" src="" class="dinoZodiacImage" alt="Zodiac" /><canvas id="dinoSolar-${this._uId
+					}" class="dinoSolar" height="300" width="300"></canvas><section id="dinoAstroInfo-${this._uId
+					}" class="dinoAstroInfo"></section><section id="dinoMoonInfo-${this._uId
+					}" class="dinoMoonInfo"></section></div><svg id="dinoBlurFilterSvg-${this._uId
+					}" xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><filter id="dinoBlurFilter-${
 					this._uId
-				}"><feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" /><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6" result="flt" /><feBlend in2="flt" in="SourceGraphic" result="mix" /></filter></defs></svg></article>`;
+					}"><feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" /><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6" result="flt" /><feBlend in2="flt" in="SourceGraphic" result="mix" /></filter></defs></svg></article>`;
 			},
 
 			/***************************************************************************/
 
 			// Remove plugin instance completely
-			destroy: function ()
+			destroy: function()
 			{
 				/*
 					The destroy method unbinds all events for the specific instance
@@ -430,7 +431,7 @@
 			},
 
 			// Cache DOM nodes for performance
-			buildCache: function ()
+			buildCache: function()
 			{
 				/*
 					Create variable(s) that can be accessed by other plugin
@@ -442,7 +443,7 @@
 			},
 
 			// Bind events that trigger methods
-			bindEvents: function ()
+			bindEvents: function()
 			{
 				const plugin = this;
 
@@ -468,7 +469,7 @@
 				*/
 				plugin.$element.on(`click touchstart.${plugin._name}`,
 					`#dinoMoonInfo-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
@@ -479,7 +480,7 @@
 					});
 
 				plugin.$element.on(`click touchstart.${plugin._name}`,
-					function ()
+					function()
 					{
 						// Use the "call" method so that inside of the method being
 						// called, ie: "someOtherFunction", the "this" keyword refers
@@ -522,7 +523,7 @@
 
 				plugin.$element.on(`mouseleave.${plugin._name}`,
 					`#dinoEarthImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
@@ -536,20 +537,20 @@
 
 				plugin.$element.on(`mouseenter.${plugin._name}`,
 					`#dinoEarthImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
-						hoverTimeout = window.setTimeout(function ()
+						hoverTimeout = window.setTimeout(function()
 							{
 								const htmlTemplate =
 									`<img src="data:image/png;base64,${plugin._astroData.seasonImage
-									}" class="dinoAstroImage" alt="${plugin._astroData.seasonName
-									}" /><div class="dinoSeasonTemplate"><strong>${plugin._astroData.seasonDesc
-									}</strong><br /><br /><span>${plugin.getI18n('dino_currentSeason',
-										plugin.options.language)}</span><br /><strong>${plugin._astroData
+										}" class="dinoAstroImage" alt="${plugin._astroData.seasonName
+										}" /><div class="dinoSeasonTemplate"><strong>${plugin._astroData.seasonDesc
+										}</strong><br /><br /><span>${plugin.getI18n('dino_currentSeason',
+											plugin.options.language)}</span><br /><strong>${plugin._astroData
 										.seasonName
-									}</strong><br /></div>`;
+										}</strong><br /></div>`;
 
 								plugin.$element.find(`#dinoAstroInfo-${plugin._uId}`).css({
 									'opacity': '1',
@@ -563,7 +564,7 @@
 
 				plugin.$element.on(`mouseleave.${plugin._name}`,
 					`#dinoSunImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
@@ -577,15 +578,15 @@
 
 				plugin.$element.on(`mouseenter.${plugin._name}`,
 					`#dinoSunImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
-						hoverTimeout = window.setTimeout(function ()
+						hoverTimeout = window.setTimeout(function()
 							{
 								const sunImage =
 									`<img src="data:image/png;base64,${plugin.getImage('astro', 4)
-									}" class="dinoAstroImage" alt="Earth" />`;
+										}" class="dinoAstroImage" alt="Earth" />`;
 								const htmlTemplate = sunImage +
 									'<div class="dinoSeasonTemplate">' +
 									'<span>' +
@@ -615,7 +616,7 @@
 
 				plugin.$element.on(`mouseleave.${plugin._name}`,
 					`#dinoMoonImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
@@ -629,15 +630,15 @@
 
 				plugin.$element.on(`mouseenter.${plugin._name}`,
 					`#dinoMoonImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
-						hoverTimeout = window.setTimeout(function ()
+						hoverTimeout = window.setTimeout(function()
 							{
 								const moonImage =
 									`<img src="data:image/png;base64,${plugin._astroData.moonPhaseImage
-									}" class="dinoAstroImage" alt="${plugin._astroData.moonPhaseName}" />`;
+										}" class="dinoAstroImage" alt="${plugin._astroData.moonPhaseName}" />`;
 								const htmlTemplate = moonImage +
 									'<div class="dinoSeasonTemplate">' +
 									'<span>' +
@@ -667,7 +668,7 @@
 
 				plugin.$element.on(`mouseleave.${plugin._name}`,
 					`#dinoZodiacImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
@@ -681,15 +682,15 @@
 
 				plugin.$element.on(`mouseenter.${plugin._name}`,
 					`#dinoZodiacImage-${plugin._uId}`,
-					function (e)
+					function(e)
 					{
 						e.preventDefault();
 
-						hoverTimeout = window.setTimeout(function ()
+						hoverTimeout = window.setTimeout(function()
 							{
 								const zodiacImage =
 									`<img src="data:image/png;base64,${plugin._astroData.zodiacImage
-									}" class="dinoAstroImage dinoZPadding" alt="${plugin._astroData
+										}" class="dinoAstroImage dinoZPadding" alt="${plugin._astroData
 										.zodiacSign}" />`;
 								const htmlTemplate = zodiacImage +
 									'<div class="dinoSeasonTemplate">' +
@@ -716,7 +717,7 @@
 			},
 
 			// Unbind events that trigger methods
-			unbindEvents: function ()
+			unbindEvents: function()
 			{
 				/*
 					Unbind all events in our plugin's namespace that are attached
@@ -734,7 +735,7 @@
 				plugin methods this way is less confusing (separation of concerns)
 				and makes your code easier to test.
 			*/
-			dataCallback: function ()
+			dataCallback: function()
 			{
 				// Cache onComplete option
 				const onData = this.options.onData;
@@ -754,7 +755,7 @@
 
 			/***************************************************************************/
 
-			calculateAstroData: function ()
+			calculateAstroData: function()
 			{
 				let widget = this;
 				/*--------------------------------------------------------------------*/
@@ -837,7 +838,7 @@
 				if (widget.options.showWidget)
 				{
 					widget.$element.find(`#dinoMoonImage-${widget._uId}`).attr('src',
-						`data:image/png;base64,${widget.getMoonIlluminationImage(moonIlluminationPhase)}`)
+							`data:image/png;base64,${widget.getMoonIlluminationImage(moonIlluminationPhase)}`)
 						.attr('alt', moonText);
 					widget.$element.find(`#dinoMoonPhase-${widget._uId}`).text(moonText);
 				}
@@ -849,8 +850,8 @@
 				if (widget.options.showWidget)
 				{
 					widget.$element.find(`#dinoZodiacImage-${widget._uId}`).attr('src',
-						`data:image/png;base64,${widget.getImage('zodiac', widget._zodiacSigns.indexOf(zodiac))
-						}`)
+							`data:image/png;base64,${widget.getImage('zodiac', widget._zodiacSigns.indexOf(zodiac))
+							}`)
 						.attr('alt', zodiac);
 					widget.$element.find(`#dinoZodiacText-${widget._uId}`).text(zodiac);
 				}
@@ -899,50 +900,50 @@
 				/*--------------------------------------------------------------------*/
 
 				widget._astroData =
-					{
-						date: new Date().toLocaleString(),
-						dateUTC: new Date().toUTCString(),
-						sunRise: sunRiseStr,
-						sunSet: sunSetStr,
-						sunAzimuth: sunAzimuth,
-						sunAltitude: sunAltitude,
-						moonRise: moonRiseStr,
-						moonSet: moonSetStr,
-						moonAzimuth: moonAzimuth,
-						moonAltitude: moonAltitude,
-						moonDistance: moonDistance,
-						moonParallax: moonParallaxAngle,
-						moonFraction: moonIlluminationFraction,
-						moonIllumination: (moonIlluminationFraction * 100).toFixed(2),
-						moonPhase: moonIlluminationPhase,
-						moonPhaseName: widget.getMoonIlluminationName(moonIlluminationPhase),
-						moonPhaseImage: widget.getMoonIlluminationImage(moonIlluminationPhase),
-						moonAngle: moonIlluminationAngle,
-						zodiacSign: zodiac,
-						zodiacImage: widget.getImage('zodiac', widget._zodiacSigns.indexOf(zodiac)),
-						seasonImage: seasonImage,
-						seasonName: seasonName,
-						seasonDesc: seasonDesc
-					};
+				{
+					date: new Date().toLocaleString(),
+					dateUTC: new Date().toUTCString(),
+					sunRise: sunRiseStr,
+					sunSet: sunSetStr,
+					sunAzimuth: sunAzimuth,
+					sunAltitude: sunAltitude,
+					moonRise: moonRiseStr,
+					moonSet: moonSetStr,
+					moonAzimuth: moonAzimuth,
+					moonAltitude: moonAltitude,
+					moonDistance: moonDistance,
+					moonParallax: moonParallaxAngle,
+					moonFraction: moonIlluminationFraction,
+					moonIllumination: (moonIlluminationFraction * 100).toFixed(2),
+					moonPhase: moonIlluminationPhase,
+					moonPhaseName: widget.getMoonIlluminationName(moonIlluminationPhase),
+					moonPhaseImage: widget.getMoonIlluminationImage(moonIlluminationPhase),
+					moonAngle: moonIlluminationAngle,
+					zodiacSign: zodiac,
+					zodiacImage: widget.getImage('zodiac', widget._zodiacSigns.indexOf(zodiac)),
+					seasonImage: seasonImage,
+					seasonName: seasonName,
+					seasonDesc: seasonDesc
+				};
 
 				this.dataCallback();
 			},
 
 			/***************************************************************************/
 
-			createCreatedBy: function ()
+			createCreatedBy: function()
 			{
 				return `<address><b>${this.capitalizeFirstLetter(this._name)}</b><br /><span><b>${
 					$.fn.dinoMoon.version}</b></span><hr /><span>${window.atob('Q3JlYXRlZCBCeTog')}<br /><b>${
 					window.atob(
 						'PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=')
-				}</b></span></address>`;
+					}</b></span></address>`;
 			},
 
 			/***************************************************************************/
 			/***************************************************************************/
 
-			getZodiacSign: function (month, day, zodiac)
+			getZodiacSign: function(month, day, zodiac)
 			{
 				if ((month === 1 && day <= 20) || (month === 12 && day >= 22))
 				{
@@ -999,84 +1000,84 @@
 			/***************************************************************************/
 			/***************************************************************************/
 
-			toJulian: function (date)
+			toJulian: function(date)
 			{
 				return date.valueOf() / this._dayMs - 0.5 + this._J1970;
 			},
 
-			fromJulian: function (j)
+			fromJulian: function(j)
 			{
 				return new Date((j + 0.5 - this._J1970) * this._dayMs);
 			},
 
-			toDays: function (date)
+			toDays: function(date)
 			{
 				return this.toJulian(date) - this._J2000;
 			},
 
-			siderealTime: function (d, lw)
+			siderealTime: function(d, lw)
 			{
 				return this._rad * (280.16 + 360.9856235 * d) - lw;
 			},
 
-			hoursLater: function (date, h)
+			hoursLater: function(date, h)
 			{
 				return new Date(date.valueOf() + h * this._dayMs / 24);
 			},
 
-			azimuth: function (h, phi, dec)
+			azimuth: function(h, phi, dec)
 			{
 				return Math.atan2(Math.sin(h), Math.cos(h) * Math.sin(phi) - Math.tan(dec) * Math.cos(phi));
 			},
 
-			altitude: function (h, phi, dec)
+			altitude: function(h, phi, dec)
 			{
 				return Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(h));
 			},
 
-			declination: function (l, b)
+			declination: function(l, b)
 			{
 				return Math.asin(
 					Math.sin(b) * Math.cos(this._obl) + Math.cos(b) * Math.sin(this._obl) * Math.sin(l));
 			},
 
-			rightAscension: function (l, b)
+			rightAscension: function(l, b)
 			{
 				return Math.atan2(Math.sin(l) * Math.cos(this._obl) - Math.tan(b) * Math.sin(this._obl),
 					Math.cos(l));
 			},
 
-			solarMeanAnomaly: function (d)
+			solarMeanAnomaly: function(d)
 			{
 				return this._rad * (357.5291 + 0.98560028 * d);
 			},
 
-			approxTransit: function (ht, lw, n)
+			approxTransit: function(ht, lw, n)
 			{
 				return 0.0009 + (ht + lw) / (2 * Math.PI) + n;
 			},
 
-			solarTransitJ: function (ds, m, l)
+			solarTransitJ: function(ds, m, l)
 			{
 				return this._J2000 + ds + 0.0053 * Math.sin(m) - 0.0069 * Math.sin(2 * l);
 			},
 
-			julianCycle: function (d, lw)
+			julianCycle: function(d, lw)
 			{
 				return Math.round(d - 0.0009 - lw / (2 * Math.PI));
 			},
 
-			observerAngle: function (height)
+			observerAngle: function(height)
 			{
 				return -2.076 * Math.sqrt(height) / 60;
 			},
 
-			hourAngle: function (h, phi, d)
+			hourAngle: function(h, phi, d)
 			{
 				return Math.acos((Math.sin(h) - Math.sin(phi) * Math.sin(d)) / (Math.cos(phi) * Math.cos(d)));
 			},
 
-			getSetJ: function (h, lw, phi, dec, n, m, l)
+			getSetJ: function(h, lw, phi, dec, n, m, l)
 			{
 				const w = this.hourAngle(h, phi, dec);
 				const a = this.approxTransit(w, lw, n);
@@ -1084,7 +1085,7 @@
 				return this.solarTransitJ(a, m, l);
 			},
 
-			eclipticLongitude: function (m)
+			eclipticLongitude: function(m)
 			{
 				// Equation of center
 				const c = this._rad * (1.9148 * Math.sin(m) + 0.02 * Math.sin(2 * m) + 0.0003 * Math.sin(3 * m));
@@ -1094,7 +1095,7 @@
 				return m + c + p + Math.PI;
 			},
 
-			astroRefraction: function (h)
+			astroRefraction: function(h)
 			{
 				// the following formula works for positive altitudes only.
 				if (h < 0)
@@ -1109,7 +1110,7 @@
 			},
 
 			// Geocentric ecliptic coordinates of the sun
-			sunCoords: function (d)
+			sunCoords: function(d)
 			{
 				const m = this.solarMeanAnomaly(d);
 				const l = this.eclipticLongitude(m);
@@ -1121,7 +1122,7 @@
 			},
 
 			// Geocentric ecliptic coordinates of the moon
-			moonCoords: function (d)
+			moonCoords: function(d)
 			{
 				// Ecliptic longitude
 				const lp = this._rad * (218.316 + 13.176396 * d);
@@ -1143,7 +1144,7 @@
 				};
 			},
 
-			getSunPosition: function (date, lat, lng)
+			getSunPosition: function(date, lat, lng)
 			{
 				const lw = this._rad * -lng;
 				const phi = this._rad * lat;
@@ -1157,7 +1158,7 @@
 				};
 			},
 
-			getMoonPosition: function (date, lat, lng)
+			getMoonPosition: function(date, lat, lng)
 			{
 				const lw = this._rad * -lng;
 				const phi = this._rad * lat;
@@ -1198,7 +1199,7 @@
 			 *  0.75    Last Quarter
 			 *  Waning Crescent
 			 */
-			getMoonIllumination: function (date)
+			getMoonIllumination: function(date)
 			{
 				const d = this.toDays(date || new Date());
 				const s = this.sunCoords(d);
@@ -1218,7 +1219,7 @@
 				};
 			},
 
-			getMoonIlluminationName: function (phase)
+			getMoonIlluminationName: function(phase)
 			{
 				if ((phase === 0) && (phase <= 0.033863193308711))
 				{
@@ -1260,7 +1261,7 @@
 				return this.getI18n('dino_moonNewMoon', this.options.language);
 			},
 
-			getMoonIlluminationImage: function (phase)
+			getMoonIlluminationImage: function(phase)
 			{
 				if ((phase === 0) && (phase <= 0.033863193308711))
 				{
@@ -1302,7 +1303,7 @@
 				return this.getImage('moon', 0);
 			},
 
-			getSunTimes: function (date, lat, lng, height)
+			getSunTimes: function(date, lat, lng, height)
 			{
 				height = height || 0;
 
@@ -1339,7 +1340,7 @@
 				return result;
 			},
 
-			getMoonTimes: function (date, lat, lng, inUtc = false)
+			getMoonTimes: function(date, lat, lng, inUtc = false)
 			{
 				let t = new Date(date);
 
@@ -1436,7 +1437,7 @@
 			/***************************************************************************/
 
 			/* Show loader before content is actual loaded into the main window */
-			showLoader: function ()
+			showLoader: function()
 			{
 				// Show Loader
 				this.$element.find(`#dinoMoonLoader-${this._uId}`).css({
@@ -1445,7 +1446,7 @@
 			},
 
 			/* All content, was loaded into the main window now hide the loader */
-			hideLoader: function ()
+			hideLoader: function()
 			{
 				// Hide Loader
 				this.$element.find(`#dinoMoonLoader-${this._uId}`).css({
@@ -1455,7 +1456,7 @@
 
 			/***************************************************************************/
 
-			createUniqId: function (idLength)
+			createUniqId: function(idLength)
 			{
 				const charsToFormId = '_0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
 				if (!idLength)
@@ -1476,7 +1477,7 @@
 
 			// Try to find a language we should use. Look for URL parameter or system settings.
 			// Restricts to supported languages ('en', 'sl' and some others).
-			getUserLanguage: function ()
+			getUserLanguage: function()
 			{
 				let lang = '';
 
@@ -1520,35 +1521,35 @@
 
 			/***************************************************************************/
 
-			randomNumberFromRange: function (min, max)
+			randomNumberFromRange: function(min, max)
 			{
 				return Math.floor(Math.random() * (max - min + 1) + min);
 			},
 
 			/***************************************************************************/
 
-			isBlank: function (str)
+			isBlank: function(str)
 			{
 				return (!str || /^\s*$/.test(str));
 			},
 
 			/***************************************************************************/
 
-			capitalizeFirstLetter: function (string)
+			capitalizeFirstLetter: function(string)
 			{
 				return string.replace(/^(.)/g, string[0].toUpperCase());
 			},
 
 			/***************************************************************************/
 
-			deCapitalizeFirstLetter: function (string)
+			deCapitalizeFirstLetter: function(string)
 			{
 				return string.replace(/^(.)/g, string[0].toLowerCase());
 			},
 
 			/***************************************************************************/
 
-			statusLocalStorage: function (name)
+			statusLocalStorage: function(name)
 			{
 				const date = new Date();
 				const current = Math.round(+date / 1000);
@@ -1577,7 +1578,7 @@
 
 			/***************************************************************************/
 
-			setLocalStorage: function (name, value, expires)
+			setLocalStorage: function(name, value, expires)
 			{
 				if (expires === undefined || expires === null)
 				{
@@ -1594,7 +1595,7 @@
 
 			/***************************************************************************/
 
-			removeLocalStorage: function (name)
+			removeLocalStorage: function(name)
 			{
 				window.localStorage.removeItem(name);
 				window.localStorage.removeItem(name + '_time');
@@ -1608,148 +1609,148 @@
 			 * @param key
 			 * @param lang
 			 */
-			getI18n: function (key, lang)
+			getI18n: function(key, lang)
 			{
 				const i18N = {
 					en:
-						{
-							plugin_title: 'DinoMoon',
-							plugin_desc: 'JQuery plugin for creating widget with current moon data.',
+					{
+						plugin_title: 'DinoMoon',
+						plugin_desc: 'JQuery plugin for creating widget with current moon data.',
 
-							dino_earthAstrologyAries: 'Aries',
-							dino_earthAstrologyTaurus: 'Taurus',
-							dino_earthAstrologyGemini: 'Gemini',
-							dino_earthAstrologyCancer: 'Cancer',
-							dino_earthAstrologyLeo: 'Leo',
-							dino_earthAstrologyVirgo: 'Virgo',
-							dino_earthAstrologyLibra: 'Libra',
-							dino_earthAstrologyScorpio: 'Scorpio',
-							dino_earthAstrologySagittarius: 'Sagittarius',
-							dino_earthAstrologyCapricorn: 'Capricorn',
-							dino_earthAstrologyAquarius: 'Aquarius',
-							dino_earthAstrologyPisces: 'Pisces',
+						dino_earthAstrologyAries: 'Aries',
+						dino_earthAstrologyTaurus: 'Taurus',
+						dino_earthAstrologyGemini: 'Gemini',
+						dino_earthAstrologyCancer: 'Cancer',
+						dino_earthAstrologyLeo: 'Leo',
+						dino_earthAstrologyVirgo: 'Virgo',
+						dino_earthAstrologyLibra: 'Libra',
+						dino_earthAstrologyScorpio: 'Scorpio',
+						dino_earthAstrologySagittarius: 'Sagittarius',
+						dino_earthAstrologyCapricorn: 'Capricorn',
+						dino_earthAstrologyAquarius: 'Aquarius',
+						dino_earthAstrologyPisces: 'Pisces',
 
-							dino_moonNewMoon: 'New Moon',
-							dino_moonWaxingCrescent: 'Waxing Crescent',
-							dino_moonFirstQuarter: 'First Quarter',
-							dino_moonWaxingGibbous: 'Waxing Gibbous',
-							dino_moonFullMoon: 'Full Moon',
-							dino_moonWaningGibbous: 'Waning Gibbous',
-							dino_moonLastQuarter: 'Last Quarter',
-							dino_moonWaningCrescent: 'Waning Crescent',
+						dino_moonNewMoon: 'New Moon',
+						dino_moonWaxingCrescent: 'Waxing Crescent',
+						dino_moonFirstQuarter: 'First Quarter',
+						dino_moonWaxingGibbous: 'Waxing Gibbous',
+						dino_moonFullMoon: 'Full Moon',
+						dino_moonWaningGibbous: 'Waning Gibbous',
+						dino_moonLastQuarter: 'Last Quarter',
+						dino_moonWaningCrescent: 'Waning Crescent',
 
-							dino_earthSeasonsWinter: 'Winter',
-							dino_earthSeasonsSpring: 'Spring',
-							dino_earthSeasonsSummer: 'Summer',
-							dino_earthSeasonsFall: 'Fall',
+						dino_earthSeasonsWinter: 'Winter',
+						dino_earthSeasonsSpring: 'Spring',
+						dino_earthSeasonsSummer: 'Summer',
+						dino_earthSeasonsFall: 'Fall',
 
-							dino_earthSeasonsPerihelion: 'Perihelion',
-							dino_earthSeasonsEquinox: 'Equinox',
-							dino_earthSeasonsSolstice: 'Solstice',
-							dino_earthSeasonsAphelion: 'Aphelion',
+						dino_earthSeasonsPerihelion: 'Perihelion',
+						dino_earthSeasonsEquinox: 'Equinox',
+						dino_earthSeasonsSolstice: 'Solstice',
+						dino_earthSeasonsAphelion: 'Aphelion',
 
-							dino_zodiacMonth: 'Zodiac sign',
-							dino_zodiacSign: 'for this month:',
+						dino_zodiacMonth: 'Zodiac sign',
+						dino_zodiacSign: 'for this month:',
 
-							dino_sunRise: 'Sun Rise:',
-							dino_sunSet: 'Sun Set:',
-							dino_moonRise: 'Moon Rise:',
-							dino_moonSet: 'Moon Set:',
-							dino_currentSeason: 'Current Season:'
-						},
+						dino_sunRise: 'Sun Rise:',
+						dino_sunSet: 'Sun Set:',
+						dino_moonRise: 'Moon Rise:',
+						dino_moonSet: 'Moon Set:',
+						dino_currentSeason: 'Current Season:'
+					},
 					sl:
-						{
-							plugin_title: 'DinoMoon',
-							plugin_desc: 'Vtičnik JQuery za ustvarjanje pripomočka s trenutnimi luninimi podatki. ',
+					{
+						plugin_title: 'DinoMoon',
+						plugin_desc: 'Vtičnik JQuery za ustvarjanje pripomočka s trenutnimi luninimi podatki. ',
 
-							dino_earthAstrologyAries: 'Oven',
-							dino_earthAstrologyTaurus: 'Bik',
-							dino_earthAstrologyGemini: 'Dvojčka',
-							dino_earthAstrologyCancer: 'Rak',
-							dino_earthAstrologyLeo: 'Lev',
-							dino_earthAstrologyVirgo: 'Devica',
-							dino_earthAstrologyLibra: 'Tehtnica',
-							dino_earthAstrologyScorpio: 'Škorpijon',
-							dino_earthAstrologySagittarius: 'Strelec',
-							dino_earthAstrologyCapricorn: 'Kozorog',
-							dino_earthAstrologyAquarius: 'Vodnar',
-							dino_earthAstrologyPisces: 'Ribi',
+						dino_earthAstrologyAries: 'Oven',
+						dino_earthAstrologyTaurus: 'Bik',
+						dino_earthAstrologyGemini: 'Dvojčka',
+						dino_earthAstrologyCancer: 'Rak',
+						dino_earthAstrologyLeo: 'Lev',
+						dino_earthAstrologyVirgo: 'Devica',
+						dino_earthAstrologyLibra: 'Tehtnica',
+						dino_earthAstrologyScorpio: 'Škorpijon',
+						dino_earthAstrologySagittarius: 'Strelec',
+						dino_earthAstrologyCapricorn: 'Kozorog',
+						dino_earthAstrologyAquarius: 'Vodnar',
+						dino_earthAstrologyPisces: 'Ribi',
 
-							dino_moonNewMoon: 'Nova Luna',
-							dino_moonWaxingCrescent: 'Naraščajoča Luna',
-							dino_moonFirstQuarter: 'Prva Četrtina',
-							dino_moonWaxingGibbous: 'Naraščajoči Krajec',
-							dino_moonFullMoon: 'Polna Luna',
-							dino_moonWaningGibbous: 'Pojemajoči Krajec',
-							dino_moonLastQuarter: 'Zadnja Četrtina',
-							dino_moonWaningCrescent: 'Pojemajoča Luna',
-							dino_moonFracillum: 'Osvetljenost:',
+						dino_moonNewMoon: 'Nova Luna',
+						dino_moonWaxingCrescent: 'Naraščajoča Luna',
+						dino_moonFirstQuarter: 'Prva Četrtina',
+						dino_moonWaxingGibbous: 'Naraščajoči Krajec',
+						dino_moonFullMoon: 'Polna Luna',
+						dino_moonWaningGibbous: 'Pojemajoči Krajec',
+						dino_moonLastQuarter: 'Zadnja Četrtina',
+						dino_moonWaningCrescent: 'Pojemajoča Luna',
+						dino_moonFracillum: 'Osvetljenost:',
 
-							dino_earthSeasonsWinter: 'Zima',
-							dino_earthSeasonsSpring: 'Pomlad',
-							dino_earthSeasonsSummer: 'Poletje',
-							dino_earthSeasonsFall: 'Jesen',
+						dino_earthSeasonsWinter: 'Zima',
+						dino_earthSeasonsSpring: 'Pomlad',
+						dino_earthSeasonsSummer: 'Poletje',
+						dino_earthSeasonsFall: 'Jesen',
 
-							dino_earthSeasonsPerihelion: 'Perihelion',
-							dino_earthSeasonsEquinox: 'Enakonočje',
-							dino_earthSeasonsSolstice: 'Solsticij',
-							dino_earthSeasonsAphelion: 'Afelija',
+						dino_earthSeasonsPerihelion: 'Perihelion',
+						dino_earthSeasonsEquinox: 'Enakonočje',
+						dino_earthSeasonsSolstice: 'Solsticij',
+						dino_earthSeasonsAphelion: 'Afelija',
 
-							dino_zodiacMonth: 'Horoskopsko znamenje',
-							dino_zodiacSign: 'za ta mesec:',
+						dino_zodiacMonth: 'Horoskopsko znamenje',
+						dino_zodiacSign: 'za ta mesec:',
 
-							dino_sunRise: 'Sončni vzhod:',
-							dino_sunSet: 'Sončni zahod:',
-							dino_moonRise: 'Lunin vzhod:',
-							dino_moonSet: 'Lunin zahod:',
-							dino_currentSeason: 'Trenutna Sezona:'
-						},
+						dino_sunRise: 'Sončni vzhod:',
+						dino_sunSet: 'Sončni zahod:',
+						dino_moonRise: 'Lunin vzhod:',
+						dino_moonSet: 'Lunin zahod:',
+						dino_currentSeason: 'Trenutna Sezona:'
+					},
 					de:
-						{
-							plugin_title: 'DinoMoon',
-							plugin_desc: 'JQuery-Plugin zum Erstellen eines Widgets mit aktuellen Monddaten.',
+					{
+						plugin_title: 'DinoMoon',
+						plugin_desc: 'JQuery-Plugin zum Erstellen eines Widgets mit aktuellen Monddaten.',
 
-							dino_earthAstrologyAries: 'Widder',
-							dino_earthAstrologyTaurus: 'Stier',
-							dino_earthAstrologyGemini: 'Zwillinge',
-							dino_earthAstrologyCancer: 'Krebs',
-							dino_earthAstrologyLeo: 'Löwe',
-							dino_earthAstrologyVirgo: 'Jungfrau',
-							dino_earthAstrologyLibra: 'Waage',
-							dino_earthAstrologyScorpio: 'Skorpion',
-							dino_earthAstrologySagittarius: 'Schütze',
-							dino_earthAstrologyCapricorn: 'Steinbock',
-							dino_earthAstrologyAquarius: 'Wassermann',
-							dino_earthAstrologyPisces: 'Fisch',
+						dino_earthAstrologyAries: 'Widder',
+						dino_earthAstrologyTaurus: 'Stier',
+						dino_earthAstrologyGemini: 'Zwillinge',
+						dino_earthAstrologyCancer: 'Krebs',
+						dino_earthAstrologyLeo: 'Löwe',
+						dino_earthAstrologyVirgo: 'Jungfrau',
+						dino_earthAstrologyLibra: 'Waage',
+						dino_earthAstrologyScorpio: 'Skorpion',
+						dino_earthAstrologySagittarius: 'Schütze',
+						dino_earthAstrologyCapricorn: 'Steinbock',
+						dino_earthAstrologyAquarius: 'Wassermann',
+						dino_earthAstrologyPisces: 'Fisch',
 
-							dino_moonNewMoon: 'Neumond',
-							dino_moonWaxingCrescent: 'Wachsender Halbmond',
-							dino_moonFirstQuarter: 'Erstes Viertel',
-							dino_moonWaxingGibbous: 'Zunehmender Mond',
-							dino_moonFullMoon: 'Vollmond',
-							dino_moonWaningGibbous: 'Abnehmender Mond',
-							dino_moonLastQuarter: 'Letztes Vierteljahr',
-							dino_moonWaningCrescent: 'Abnehmender Halbmond',
+						dino_moonNewMoon: 'Neumond',
+						dino_moonWaxingCrescent: 'Wachsender Halbmond',
+						dino_moonFirstQuarter: 'Erstes Viertel',
+						dino_moonWaxingGibbous: 'Zunehmender Mond',
+						dino_moonFullMoon: 'Vollmond',
+						dino_moonWaningGibbous: 'Abnehmender Mond',
+						dino_moonLastQuarter: 'Letztes Vierteljahr',
+						dino_moonWaningCrescent: 'Abnehmender Halbmond',
 
-							dino_earthSeasonsWinter: 'Winter',
-							dino_earthSeasonsSpring: 'Frühling',
-							dino_earthSeasonsSummer: 'Sommer',
-							dino_earthSeasonsFall: 'Herbst',
+						dino_earthSeasonsWinter: 'Winter',
+						dino_earthSeasonsSpring: 'Frühling',
+						dino_earthSeasonsSummer: 'Sommer',
+						dino_earthSeasonsFall: 'Herbst',
 
-							dino_earthSeasonsPerihelion: 'Perihel',
-							dino_earthSeasonsEquinox: 'Tagundnachtgleiche ',
-							dino_earthSeasonsSolstice: 'Sonnenwende',
-							dino_earthSeasonsAphelion: 'Aphelion',
+						dino_earthSeasonsPerihelion: 'Perihel',
+						dino_earthSeasonsEquinox: 'Tagundnachtgleiche ',
+						dino_earthSeasonsSolstice: 'Sonnenwende',
+						dino_earthSeasonsAphelion: 'Aphelion',
 
-							dino_zodiacMonth: 'Sternzeichen',
-							dino_zodiacSign: 'für diesen Monat:',
+						dino_zodiacMonth: 'Sternzeichen',
+						dino_zodiacSign: 'für diesen Monat:',
 
-							dino_sunRise: 'Sonnenaufgang:',
-							dino_sunSet: 'Sonnenuntergang:',
-							dino_moonRise: 'Mondaufgang:',
-							dino_moonSet: 'Monduntergang:',
-							dino_currentSeason: 'Aktuelle Saison:'
-						}
+						dino_sunRise: 'Sonnenaufgang:',
+						dino_sunSet: 'Sonnenuntergang:',
+						dino_moonRise: 'Mondaufgang:',
+						dino_moonSet: 'Monduntergang:',
+						dino_currentSeason: 'Aktuelle Saison:'
+					}
 				};
 
 				if (typeof i18N[lang] !== 'undefined' && typeof i18N[lang][key] !== 'undefined')
@@ -1768,7 +1769,7 @@
 			 *  First 5 in array theme dark,
 			 *  second 5 in array theme light
 			 */
-			getImage: function (array, key = 0)
+			getImage: function(array, key = 0)
 			{
 				const dinoSeasonImage = [
 					'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',
@@ -1840,9 +1841,9 @@
 
 		More: http://learn.jquery.com/plugins/basic-plugin-creation/
 	*/
-	$.fn.dinoMoon = function (options)
+	$.fn.dinoMoon = function(options)
 	{
-		this.each(function ()
+		this.each(function()
 		{
 			if (!$.data(this, `plugin_${pluginName}`))
 			{
