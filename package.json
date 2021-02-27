@@ -1,0 +1,16 @@
+{
+  "name": "dinomoon",
+  "version": "1.12.2021",
+  "description": "JQuery plugin for creating widget with current moon data.",
+  "main": "dist/dinoMoon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MCX-Systems <casardavorin@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta2",
+    "jquery": "^3.5.1"
+  }
+}

@@ -31,10 +31,10 @@
 	}
 	else
 	{
-		root.dinoQuakes = factory(root.jquery);
+		root.dinoMoon = factory(root.jquery);
 	}
 }(this,
-	function(x)
+	function()
 	{
 		'use strict';
 
