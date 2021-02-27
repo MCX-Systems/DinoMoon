@@ -1955,7 +1955,7 @@
 	};
 
 	/* Return current version */
-	$.fn.dinoMoon.version = '1.14.2021';
+	$.fn.dinoMoon.version = '1.15.2021';
 
 	/*
 		Attach the default plugin options directly to the plugin object. This
