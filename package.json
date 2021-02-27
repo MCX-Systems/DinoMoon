@@ -1,8 +1,28 @@
 {
   "name": "dinomoon",
   "version": "1.12.2021",
-  "description": "JQuery plugin for creating widget with current moon data.",
+  "description": "JQuery plugin for creating widget with current astro data.",
+  "keywords": [
+    "widget",
+    "jquery",
+    "astro",
+    "moon",
+    "sun"
+  ],
+  "directories": {
+    "dist": "dist",
+    "example": "example"
+  },
+  "files": [
+    "dist",
+    "example"
+  ],
+  "bugs": {
+    "url": "https://github.com/MCX-Systems/DinoMoon/issues"
+  },
+  "homepage": "https://github.com/MCX-Systems/DinoMoon#readme",
   "main": "dist/dinoMoon.js",
+  "browser": "dist/dinoMoon.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

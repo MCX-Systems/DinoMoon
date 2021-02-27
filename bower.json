@@ -1,6 +1,6 @@
 {
   "name": "dinomoon",
-  "description": "JQuery plugin for creating widget with current moon data.",
+  "description": "JQuery plugin for creating widget with current astro data.",
   "main": "dist/dinoMoon.js",
   "authors": [
     "MCX-Systems <casardavorin@gmail.com>"
