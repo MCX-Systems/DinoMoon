@@ -33,6 +33,25 @@
 	*/
 	const pluginName = 'dinoMoon';
 
+	const kmPerAu = 1.4959787069098932e+8;
+	const arcSec180 = 180 * 60 * 60; // arc seconds per 180 degrees (or pi radians)
+	const auPerParsec = arcSec180 / Math.PI; // exact definition of how many AU = one parsec
+
+	const sunMag1Au = -0.17 - 5 * Math.log10(auPerParsec); // formula from JPL Horizons
+	const sunRadiusKm = 695700.0;
+	const sunRadiusAu = sunRadiusKm / kmPerAu;
+
+	const earthEquatorialRadiusKm = 6378.1366;
+	const earthEquatorialRadiusAu = earthEquatorialRadiusKm / kmPerAu;
+	const earthMeanRadiusKm = 6371.0; /* mean radius of the Earth's geoid, without atmosphere */
+	const earthAtmosphereKm = 88.0; /* effective atmosphere thickness for lunar eclipses */
+	const earthEclipseRadiusKm = earthMeanRadiusKm + earthAtmosphereKm;
+
+	const moonEquatorialRadiusKm = 1738.1;
+	const moonMeanRadiusKm = 1737.4;
+	const moonPolarRadiusKm = 1736.0;
+	const moonEquatorialRadiusAu = (moonEquatorialRadiusKm / kmPerAu);
+
 	/*
 		The "Plugin" constructor, builds a new instance of the plugin for the
 		DOM node(s) that the plugin is called on. For example,
@@ -61,6 +80,7 @@
 		this._J2000 = 2451545;
 		this._rad = Math.PI / 180;
 		this._obl = this._rad * 23.4397;
+		this._decimalPlaces = 7;
 		this._times = [
 			[-0.833, 'sunrise', 'sunset'],
 			[-0.3, 'sunriseEnd', 'sunsetStart'],
@@ -255,6 +275,9 @@
 					window.console.info(
 						`Plugin Description: ${widget.getI18n('plugin_desc', widget.options.language)}`);
 					window.console.info(`Uniq ID generated: ${widget._uId}`);
+					window.console.info(`Current dateTime is: ${widget.formatTime($.now(), 0)}`);
+					window.console.info(`Current date is: ${widget.formatTime($.now(), 2)}`);
+					window.console.info(`Current time is: ${widget.formatTime($.now())}`);
 					window.console.info('--------------------------------------------');
 					window.console.info('--------------------------------------------');
 				}
@@ -905,25 +928,36 @@
 					dateUTC: new Date().toUTCString(),
 					sunRise: sunRiseStr,
 					sunSet: sunSetStr,
-					sunAzimuth: sunAzimuth,
-					sunAltitude: sunAltitude,
+					sunAzimuth: sunAzimuth.toFixed(widget._decimalPlaces),
+					sunAltitude: sunAltitude.toFixed(widget._decimalPlaces),
+					sunRadiusKm: sunRadiusKm,
+					sunRadiusAu: sunRadiusAu,
+					sunMag1AU: sunMag1Au,
 					moonRise: moonRiseStr,
 					moonSet: moonSetStr,
-					moonAzimuth: moonAzimuth,
-					moonAltitude: moonAltitude,
-					moonDistance: moonDistance,
-					moonParallax: moonParallaxAngle,
-					moonFraction: moonIlluminationFraction,
+					moonAzimuth: moonAzimuth.toFixed(widget._decimalPlaces),
+					moonAltitude: moonAltitude.toFixed(widget._decimalPlaces),
+					moonDistance: moonDistance.toFixed(widget._decimalPlaces),
+					moonParallax: moonParallaxAngle.toFixed(widget._decimalPlaces),
+					moonFraction: moonIlluminationFraction.toFixed(widget._decimalPlaces),
 					moonIllumination: (moonIlluminationFraction * 100).toFixed(2),
-					moonPhase: moonIlluminationPhase,
+					moonPhase: moonIlluminationPhase.toFixed(widget._decimalPlaces),
 					moonPhaseName: widget.getMoonIlluminationName(moonIlluminationPhase),
 					moonPhaseImage: widget.getMoonIlluminationImage(moonIlluminationPhase),
-					moonAngle: moonIlluminationAngle,
+					moonAngle: moonIlluminationAngle.toFixed(widget._decimalPlaces),
+					moonEqRadiusKm: moonEquatorialRadiusKm,
+					moonEqRadiusAu: moonEquatorialRadiusAu,
+					moonMeanRadiusKm: moonMeanRadiusKm,
+					moonPolarRadiusKm: moonPolarRadiusKm,
 					zodiacSign: zodiac,
 					zodiacImage: widget.getImage('zodiac', widget._zodiacSigns.indexOf(zodiac)),
 					seasonImage: seasonImage,
 					seasonName: seasonName,
-					seasonDesc: seasonDesc
+					seasonDesc: seasonDesc,
+					earthEqRadiusKm: earthEquatorialRadiusKm,
+					earthEqRadiusAu: earthEquatorialRadiusAu,
+					earthMeanRadiusKm: earthMeanRadiusKm,
+					earthEclipseRadiusKm: earthEclipseRadiusKm
 				};
 
 				this.dataCallback();
@@ -1126,8 +1160,8 @@
 			{
 				// Ecliptic longitude
 				const lp = this._rad * (218.316 + 13.176396 * d);
-				// Mean anomaly
-				const m = this._rad * (134.963 + 13.064993 * d);
+				// Lunar mean anomaly (p. 338)
+				const m = this._rad * (134.9633964 + 13.064993 * d);
 				// Mean distance
 				const f = this._rad * (93.272 + 13.229350 * d);
 				// Longitude
@@ -1135,7 +1169,7 @@
 				// Latitude
 				const b = this._rad * 5.128 * Math.sin(f);
 				// Distance to the moon in km
-				const dt = 385001 - 20905 * Math.cos(m);
+				const dt = 385000.56 - 20905.355 * Math.cos(m);
 
 				return {
 					ra: this.rightAscension(l, b),
@@ -1441,6 +1475,7 @@
 			{
 				// Show Loader
 				this.$element.find(`#dinoMoonLoader-${this._uId}`).css({
+					'opacity': 1,
 					'visibility': 'visible'
 				});
 			},
@@ -1450,6 +1485,7 @@
 			{
 				// Hide Loader
 				this.$element.find(`#dinoMoonLoader-${this._uId}`).css({
+					'opacity': 0,
 					'visibility': 'collapse'
 				});
 			},
@@ -1603,6 +1639,57 @@
 
 			/***************************************************************************/
 
+			formatTime: function(unixTimestamp, fullDate, unix = false)
+			{
+				let formattedDate;
+				let timestamp;
+				if (unix)
+				{
+					timestamp = unixTimestamp * 1000;
+				}
+				else
+				{
+					timestamp = unixTimestamp;
+				}
+
+				const updateDate = new Date(timestamp);
+				const day = (updateDate.getDate() < 10 ? '0' : '') + updateDate.getDate();
+				const month = (updateDate.getMonth() < 9 ? '0' : '') + (updateDate.getMonth() + 1);
+				const year = updateDate.getFullYear();
+				let hours = updateDate.getHours();
+				let minutes = updateDate.getMinutes();
+
+				if (minutes < 10)
+				{
+					minutes = `0${minutes}`;
+				}
+
+				if (hours < 10)
+				{
+					hours = `0${hours}`;
+				}
+
+				switch (fullDate)
+				{
+					case 0:
+						formattedDate = hours + ':' + minutes + ' - ' + day + '-' + month + '-' + year;
+						break;
+					case 1:
+						formattedDate = month + '/' + day + '/' + year;
+						break;
+					case 2:
+						formattedDate = day + '-' + month + '-' + year;
+						break;
+					default:
+						formattedDate = hours + ':' + minutes;
+						break;
+				}
+
+				return formattedDate;
+			},
+
+			/***************************************************************************/
+
 			/*
 			 * Internationalization of some texts used by the dinoMoon.
 			 * @return String the localized text item or the id if there's no translation found
@@ -1737,7 +1824,7 @@
 						dino_earthSeasonsSummer: 'Sommer',
 						dino_earthSeasonsFall: 'Herbst',
 
-						dino_earthSeasonsPerihelion: 'Perihel',
+						dino_earthSeasonsPerihelion: 'Perihelion',
 						dino_earthSeasonsEquinox: 'Tagundnachtgleiche ',
 						dino_earthSeasonsSolstice: 'Sonnenwende',
 						dino_earthSeasonsAphelion: 'Aphelion',
@@ -1868,7 +1955,7 @@
 	};
 
 	/* Return current version */
-	$.fn.dinoMoon.version = '1.12.2021';
+	$.fn.dinoMoon.version = '1.14.2021';
 
 	/*
 		Attach the default plugin options directly to the plugin object. This

@@ -312,6 +312,7 @@
 	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 	visibility: visible;
+    opacity: 1;
 	width: 100%;
 	z-index: 30;
 }
