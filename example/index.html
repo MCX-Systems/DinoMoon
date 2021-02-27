@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DinoMoon Widget Example</title>
+	<meta content="Jquery plugin for creating current moon data." name="description"/>
+	<meta content="moon, jquery, plugin, phases, data, date" name="keywords"/>
+	<meta content="Davorin Casar (MCX-Systems)" name="author"/>
+	<!-- FavIcon -->
+	<link rel="apple-touch-icon" sizes="120x120" href="../assets/favicon/apple-touch-icon.png?v=m2n8Lznqb0">
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png?v=m2n8Lznqb0">
+	<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png?v=m2n8Lznqb0">
+	<link rel="shortcut icon" href="../assets/favicon/favicon.ico?v=m2n8Lznqb0">
+	<meta name="apple-mobile-web-app-title" content="DinoMoon">
+	<meta name="application-name" content="DinoMoon">
+	<!-- CSS stylesheets -->
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css?v=m2n8Lznqb0" />
+	<!-- DinoKnob stylesheets -->
+	<link rel="stylesheet" href="../dist/dinoMoon.min.css?v=m2n8Lznqb0" />
+	<!-- JavaScript includes -->
+	<script src="../node_modules/jquery/dist/jquery.min.js?v=m2n8Lznqb0"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js?v=m2n8Lznqb0"></script>
+	<!-- DinoKnob Plugin -->
+	<script src="../dist/dinoMoon.min.js?v=m2n8Lznqb0"></script>
+	<style>
+		body
+		{
+			background-color: rgb(0, 0, 0);
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			padding: 80px 0;
+			overflow: auto;
+		}
+		header, footer
+		{
+			width: 100%;
+			height: 50px;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.app-download
+		{
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			direction: rtl;
+			top: 0;
+			position: fixed;
+			flex-direction: column;
+			z-index: 100;
+			left: 2rem;
+			border-bottom-right-radius: 50%;
+			border-bottom-left-radius: 50%;
+			box-shadow: 1px 2px 14px 5px rgb(67, 67, 71);
+			padding: 1rem;
+		}
+		.app-download:hover
+		{
+			box-shadow: 1px 2px 14px 5px rgb(0, 0, 0);
+		}
+		.app-download img
+		{
+			margin-top: -12px;
+		}
+	</style>
+</head>
+
+<body>
+<div class="container-fluid text-center">
+	<header class="fixed-top btn-dark d-flex align-items-center justify-content-between">
+		<span class="app-download bg-danger text-center d-none d-md-flex">
+			<a href="https://mcx-systems.github.io/DinoMoon/" target="_blank">
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoMoon" />
+			</a>
+		</span>
+		<span>&nbsp;</span>
+		<h4 id="plugV" class="text-danger pt-1">DinoMoon - v1.0.2021</h4>
+		<span>&nbsp;</span>
+		<script>
+			document.getElementById('plugV').innerHTML = 'DinoMoon-' + $.fn.dinoMoon.version;
+		</script>
+	</header>
+
+	<section class="row align-items-center">
+		<div class="col-md-12 col-lg-6 bg-primary d-flex justify-content-center p-4">
+			<div id="MoonExample1"></div>
+		</div>
+
+		<div class="col-md-12 col-lg-6 bg-warning d-flex justify-content-center p-4">
+			<div id="MoonExample2"></div>
+		</div>
+
+		<div class="col-md-12 col-lg-6 bg-primary p-4">
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="dat1">Date:</label>
+				<input id="dat1" type="text" class="form-control col-6" placeholder="00:00:00 00/00/0000" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="datUtc1">UTC Date:</label>
+				<input id="datUtc1" type="text" class="form-control" placeholder="00:00:00 00/00/0000 GMT" readonly="readonly" />
+            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="sunR1">Sunrise:</label>
+				<input id="sunR1" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="sunS1">Sunset:</label>
+				<input id="sunS1" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="sunAz1">Sun Azimuth:</label>
+				<input id="sunAz1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="sunAl1">Sun Altitude:</label>
+				<input id="sunAl1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonR1">Moonrise:</label>
+				<input id="moonR1" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonS1">Moonset:</label>
+				<input id="moonS1" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonAz1">Moon Azimuth:</label>
+				<input id="moonAz1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonAl1">Moon Altitude:</label>
+				<input id="moonAl1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonD1">Moon Distance:</label>
+				<input id="moonD1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonP1">Moon Parallax:</label>
+				<input id="moonP1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonF1">Moon Fraction:</label>
+				<input id="moonF1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonI1">Moon Illumination:</label>
+				<input id="moonI1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonPh1">Moon Phase:</label>
+				<input id="moonPh1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonPn1">Moon Phase Name:</label>
+				<input id="moonPn1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonAn1">Moon Angle:</label>
+				<input id="moonAn1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonZd1">Zodiac Sign:</label>
+				<input id="moonZd1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="moonSn1">Season Name:</label>
+				<input id="moonSn1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-primary text-white" for="moonSd1">Season Description:</label>
+				<input id="moonSd1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+		</div>
+
+		<div class="col-md-12 col-lg-6 bg-warning p-4">
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="dat2">Date:</label>
+				<input id="dat2" type="text" class="form-control col-6" placeholder="00:00:00 00/00/0000" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="datUtc2">UTC Date:</label>
+				<input id="datUtc2" type="text" class="form-control" placeholder="00:00:00 00/00/0000 GMT" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="sunR2">Sunrise:</label>
+				<input id="sunR2" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="sunS2">Sunset:</label>
+				<input id="sunS2" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="sunAz2">Sun Azimuth:</label>
+				<input id="sunAz2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="sunAl2">Sun Altitude:</label>
+				<input id="sunAl2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonR2">Moonrise:</label>
+				<input id="moonR2" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonS2">Moonset:</label>
+				<input id="moonS2" type="text" class="form-control" placeholder="00:00:00" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonAz2">Moon Azimuth:</label>
+				<input id="moonAz2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonAl2">Moon Altitude:</label>
+				<input id="moonAl2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonD2">Moon Distance:</label>
+				<input id="moonD2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonP2">Moon Parallax:</label>
+				<input id="moonP2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonF2">Moon Fraction:</label>
+				<input id="moonF2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonI2">Moon Illumination:</label>
+				<input id="moonI2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonPh2">Moon Phase:</label>
+				<input id="moonPh2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonPn2">Moon Phase Name:</label>
+				<input id="moonPn2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonAn2">Moon Angle:</label>
+				<input id="moonAn2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonZd2">Zodiac Sign:</label>
+				<input id="moonZd2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="moonSn2">Season Name:</label>
+				<input id="moonSn2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+
+				<label class="input-group-text bg-warning text-white" for="moonSd2">Season Description:</label>
+				<input id="moonSd2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
+		</div>
+	</section>
+
+	<section class="row align-items-center mt-3">
+		<div class="col-md-12 col-lg-6 bg-dark d-flex justify-content-center p-4">
+			<div id="MoonExample3"></div>
+		</div>
+
+		<div class="col-md-12 col-lg-6 bg-danger d-flex justify-content-center p-4">
+			<div id="MoonExample4"></div>
+		</div>
+	</section>
+
+	<footer class="fixed-bottom btn-dark d-flex align-items-center justify-content-between">
+		<span>&nbsp</span>
+		<h5 class="text-warning pt-1">Created by: <strong class="text-danger">MCX-Systems&reg;</strong></h5>
+		<span>&nbsp</span>
+	</footer>
+</div>
+<script>
+	$(document).ready(function()
+	{
+		$('#MoonExample1').dinoMoon({
+			// Location by latitude
+			latitude: 46.6623,
+			// Location by longitude
+			longitude: 16.1711,
+			// Data recalculate every 1 second default 1 hour
+			updatePeriod: 1000,
+			// Returns a array of astro data
+			onData: function(astroData)
+			{
+				$("#dat1").val(astroData.date);
+				$("#datUtc1").val(astroData.dateUTC);
+				$("#sunR1").val(astroData.sunRise);
+				$("#sunS1").val(astroData.sunSet);
+				$("#sunAz1").val(astroData.sunAzimuth);
+				$("#sunAl1").val(astroData.sunAltitude);
+				$("#moonR1").val(astroData.moonRise);
+				$("#moonS1").val(astroData.moonSet);
+				$("#moonAz1").val(astroData.moonAzimuth);
+				$("#moonAl1").val(astroData.moonAltitude);
+				$("#moonD1").val(astroData.moonDistance);
+				$("#moonP1").val(astroData.moonParallax);
+				$("#moonF1").val(astroData.moonFraction);
+				$("#moonI1").val(astroData.moonIllumination);
+				$("#moonPh1").val(astroData.moonPhase);
+				$("#moonPn1").val(astroData.moonPhaseName);
+				$("#moonAn1").val(astroData.moonAngle);
+				$("#moonZd1").val(astroData.zodiacSign);
+				$("#moonSn1").val(astroData.seasonName);
+				$("#moonSd1").val(astroData.seasonDesc);
+			},
+		});
+		// $('#MoonExample1').data('plugin_dinoMoon').destroy();
+
+		$('#MoonExample2').dinoMoon({
+			// Show or hide moon widget
+			showWidget: false,
+			// Plugin language automatic
+			// detection at runtime from browser
+			language: 'en',
+			// Data recalculate every 1 second default 1 hour
+			updatePeriod: 1000,
+			// Enable plugin debug
+			debug: true,
+			// Returns a array of astro data
+			onData: function(astroData)
+			{
+				$("#dat2").val(astroData.date);
+				$("#datUtc2").val(astroData.dateUTC);
+				$("#sunR2").val(astroData.sunRise);
+				$("#sunS2").val(astroData.sunSet);
+				$("#sunAz2").val(astroData.sunAzimuth);
+				$("#sunAl2").val(astroData.sunAltitude);
+				$("#moonR2").val(astroData.moonRise);
+				$("#moonS2").val(astroData.moonSet);
+				$("#moonAz2").val(astroData.moonAzimuth);
+				$("#moonAl2").val(astroData.moonAltitude);
+				$("#moonD2").val(astroData.moonDistance);
+				$("#moonP2").val(astroData.moonParallax);
+				$("#moonF2").val(astroData.moonFraction);
+				$("#moonI2").val(astroData.moonIllumination);
+				$("#moonPh2").val(astroData.moonPhase);
+				$("#moonPn2").val(astroData.moonPhaseName);
+				$("#moonAn2").val(astroData.moonAngle);
+				$("#moonZd2").val(astroData.zodiacSign);
+				$("#moonSn2").val(astroData.seasonName);
+				$("#moonSd2").val(astroData.seasonDesc);
+			},
+		});
+		// $('#MoonExample2').data('plugin_dinoMoon').destroy();
+
+		$('#MoonExample3').dinoMoon({
+			// Plugin language automatic
+			// detection at runtime from browser
+			language: 'de'
+		});
+		// $('#MoonExample3').data('plugin_dinoMoon').destroy();
+
+		$('#MoonExample4').dinoMoon({
+			// Enable plugin debug
+			debug: true
+		});
+		// $('#MoonExample4').data('plugin_dinoMoon').destroy();
+	});
+</script>
+</body>
+</html>
