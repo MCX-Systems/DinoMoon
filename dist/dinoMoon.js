@@ -1786,7 +1786,6 @@
 							dino_moonWaningGibbous: 'Pojemajoči Krajec',
 							dino_moonLastQuarter: 'Zadnja Četrtina',
 							dino_moonWaningCrescent: 'Pojemajoča Luna',
-							dino_moonFracillum: 'Osvetljenost:',
 
 							dino_earthSeasonsWinter: 'Zima',
 							dino_earthSeasonsSpring: 'Pomlad',
