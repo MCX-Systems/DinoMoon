@@ -1467,3 +1467,7 @@ W
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 D
 dinoMoon.jquery.json,7\4\746244e5fa425efdd0f427baa381872031638ae8
+=
+.editorconfig,6\2\626a747c8694eaae66f2afb3d1a745b045782c70
+=
+tsconfig.json,6\1\61ebb9fd6e8cf9082658121d5d81e297791dacd0

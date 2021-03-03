@@ -797,12 +797,13 @@
 				let widget = this;
 				/*--------------------------------------------------------------------*/
 				// get today's sunlight times
-				let sTimes = this.getSunTimes(new Date(), widget.options.latitude, widget.options.longitude);
-
+				let sTimes = widget.getSunTimes(new Date(), widget.options.latitude, widget.options.longitude);
+				let sR = new Date(sTimes.sunrise);
+				let sS = new Date(sTimes.sunset);
 				// format sunrise time from the Date object
-				let sunRiseStr = sTimes.sunrise.getHours() + ':' + sTimes.sunrise.getMinutes();
+				let sunRiseStr = sR.getHours() + ':' + sR.getMinutes();
 				// format sunset time from the Date object
-				let sunSetStr = sTimes.sunset.getHours() + ':' + sTimes.sunset.getMinutes();
+				let sunSetStr = sS.getHours() + ':' + sS.getMinutes();
 
 				// get position of the sun (azimuth and altitude)
 				let sunPos = widget.getSunPosition(new Date(), widget.options.latitude, widget.options.longitude);
@@ -826,12 +827,14 @@
 
 				/*--------------------------------------------------------------------*/
 				// get today's moonlight times
-				let mTimes = this.getMoonTimes(new Date(), widget.options.latitude, widget.options.longitude);
+				let mTimes = widget.getMoonTimes(new Date(), widget.options.latitude, widget.options.longitude);
+				let mR = new Date(mTimes.moonrise);
+				let mS = new Date(mTimes.moonset);
 
 				// format moonrise time from the Date object
-				let moonRiseStr = mTimes.moonrise.getHours() + ':' + mTimes.moonrise.getMinutes();
+				let moonRiseStr = mR.getHours() + ':' + mR.getMinutes();
 				// format moonset time from the Date object
-				let moonSetStr = mTimes.moonset.getHours() + ':' + mTimes.moonset.getMinutes();
+				let moonSetStr = mS.getHours() + ':' + mS.getMinutes();
 
 				// get position of the moon (azimuth and altitude) at today's moonrise
 				let moonPos = widget.getMoonPosition(new Date(), widget.options.latitude, widget.options.longitude);
@@ -1468,6 +1471,7 @@
 				{
 					result.moonrise = this.hoursLater(t, rise);
 				}
+
 				if (set)
 				{
 					result.moonset = this.hoursLater(t, set);
